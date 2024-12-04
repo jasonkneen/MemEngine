@@ -2,3 +2,5 @@
 *.log
 *.pickle
 *.DS_Store
+
+logs/

@@ -43,6 +43,10 @@ class ExplicitMemory(BaseMemory):
     @abstractmethod
     def recall(self, query) -> str:
         pass
+
+    @abstractmethod
+    def display(self) -> None:
+        pass
     
     @abstractmethod
     def manage(self, operation, **kwargs) -> None:

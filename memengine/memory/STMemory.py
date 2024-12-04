@@ -2,6 +2,7 @@ from memengine.memory.BaseMemory import ExplicitMemory
 from memengine.utils.Storage import LinearStorage
 from memengine.operation.Recall import STMemoryRecall
 from memengine.operation.Store import STMemoryStore
+from memengine.utils.Display import *
 
 class STMemory(ExplicitMemory):
     """
@@ -13,7 +14,11 @@ class STMemory(ExplicitMemory):
         self.storage = LinearStorage(self.config.args.storage)
         self.recall_op = STMemoryRecall(self.config.args.recall, storage = self.storage)
         self.store_op = STMemoryStore(self.config.args.store, storage = self.storage, time_retrieval = self.recall_op.time_retrieval)
-    
+
+        self.auto_display = eval(self.config.args.display.method)(self.config.args.display, register_dict = {
+            'Memory Storage': self.storage
+        })
+
     def reset(self):
         self.__reset_objects__([self.storage, self.store_op, self.recall_op])
 
@@ -22,6 +27,9 @@ class STMemory(ExplicitMemory):
     
     def recall(self, query) -> object:
         return self.recall_op(query)
+    
+    def display(self) -> None:
+        self.auto_display(self.storage.counter)
     
     def manage(self, operation, **kwargs) -> None:
         pass

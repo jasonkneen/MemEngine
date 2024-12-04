@@ -24,6 +24,8 @@ class ConcateUtilization(BaseUtilization):
     def concate_list(self, l):
         if self.config.list_config.index:
             l = ['[%d] %s' % (index, m) for index, m in enumerate(l)]
+        if len(l) == 0:
+            return 'None'
         return self.config.list_config.sep.join(l)
 
     def __call__(self, input_memory):

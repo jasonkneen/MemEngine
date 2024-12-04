@@ -226,8 +226,8 @@ class MGMemoryStore(BaseStore):
             if self.flush_checker.check_truncation_needed(flush_context):
                 break
         
-        self.main_context['recursive_summary'] = self.summarizer({
-            'recursive_summary': self.main_context['recursive_summary'],
+        self.main_context['recursive_summary']['global'] = self.summarizer({
+            'recursive_summary': self.main_context['recursive_summary']['global'],
             'flush_context': flush_context
         })
 

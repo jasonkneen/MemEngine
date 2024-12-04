@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from memengine.function.Truncation import *
 
-class Storage(ABC):
+class BaseStorage(ABC):
     def __init__(self, config):
         self.config = config
 
@@ -10,10 +10,14 @@ class Storage(ABC):
         pass
 
     @abstractmethod
+    def display(self):
+        pass
+
+    @abstractmethod
     def is_empty(self):
         pass
 
-class LinearStorage(Storage):
+class LinearStorage(BaseStorage):
     def __init__(self, config):
         super().__init__(config)
 
@@ -23,6 +27,14 @@ class LinearStorage(Storage):
     def reset(self):
         self.clear_all_memory()
         self.counter = 0
+
+    def display(self):
+        memory_display_items = []
+        for m in self.memory_list:
+            memory_display_items.append('\n'.join(['%s: %s' % (k,v) for k, v in m.items()]))
+        if len(memory_display_items) == 0:
+            return 'None'
+        return '\n'.join(['[Memory Entity %d]\n%s' % (index, m) for index, m in enumerate(memory_display_items)])
 
     def clear_memory(self, start=None, end=None):
         if start is None:
@@ -84,7 +96,7 @@ class LinearStorage(Storage):
     def get_all_memory_in_order(self):
         return self.memory_list
     
-class GraphStorage(Storage):
+class GraphStorage(BaseStorage):
     def __init__(self, config):
         super().__init__(config)
 
@@ -100,6 +112,31 @@ class GraphStorage(Storage):
         self.node_counter = 0
         self.edge_counter = 0
         self.memory_order_map = []
+
+    def display(self):
+        node_display_items = []
+        for node_id, element in self.node.items():
+            node_display_items.append('\n'.join(['%s: %s' % (k,v) for k, v in element.items()]))
+        if len(node_display_items) == 0:
+            return 'None'
+        
+        edge_display_items = []
+        for edge_id, element in self.edge.items():
+            edge_display_items.append('\n'.join(['%s: %s' % (k,v) for k, v in element.items()]))
+
+        if len(node_display_items) == 0:
+            node_context =  'None'
+        else:
+            node_context = '\n'.join(['[Node Entity %d]\n%s' % (index, m) for index, m in enumerate(node_display_items)])
+        
+        if len(edge_display_items) == 0:
+            edge_context =  'None'
+        else:
+            edge_context = '\n'.join(['[Edge Entity %d]\n%s' % (index, m) for index, m in enumerate(edge_display_items)])
+        return """Memory Node Context::
+%s
+Memory Edge Context::
+%s""" % (node_context, edge_context)
     
     def get_element_number(self):
         return len(self.node)

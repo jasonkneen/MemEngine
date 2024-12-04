@@ -7,6 +7,7 @@ DEFAULT_FUMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_FUMEMORY_RECALL,
     'store': DEFAULT_FUMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -15,6 +16,7 @@ DEFAULT_STMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_STMEMORY_RECALL,
     'store': DEFAULT_STMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -23,6 +25,7 @@ DEFAULT_LTMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_LTMEMORY_RECALL,
     'store': DEFAULT_LTMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -32,6 +35,7 @@ DEFAULT_GAMEMORY = {
     'recall': DEFAULT_GAMEMORY_RECALL,
     'store': DEFAULT_GAMEMORY_STORE,
     'reflect': DEFAULT_GAMEMORY_REFLECT,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -40,6 +44,7 @@ DEFAULT_MBMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_MBMEMORY_RECALL,
     'store': DEFAULT_MBMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -48,6 +53,7 @@ DEFAULT_SCMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_SCMEMORY_RECALL,
     'store': DEFAULT_SCMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -56,6 +62,7 @@ DEFAULT_MGMEMORY = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': DEFAULT_MGMEMORY_RECALL,
     'store': DEFAULT_MGMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -65,6 +72,7 @@ DEFAULT_RFMEMORY = {
     'recall': DEFAULT_FUMEMORY_RECALL,
     'store': DEFAULT_FUMEMORY_STORE,
     'optimize': DEFAULT_RFMEMORY_OPTIMIZE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -73,6 +81,7 @@ DEFAULT_MTMEMORY = {
     'storage': DEFAULT_GRAPH_STORAGE,
     'recall': DEFAULT_LTMEMORY_RECALL,
     'store': DEFAULT_MTMEMORY_STORE,
+    'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 

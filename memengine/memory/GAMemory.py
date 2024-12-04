@@ -3,6 +3,7 @@ from memengine.utils.Storage import LinearStorage
 from memengine.operation.Recall import GAMemoryRecall
 from memengine.operation.Store import GAMemoryStore
 from memengine.operation.Reflect import GAReflect
+from memengine.utils.Display import *
 
 class GAMemory(ExplicitMemory):
     """
@@ -28,6 +29,10 @@ class GAMemory(ExplicitMemory):
             imporatance_judge = self.recall_op.imporatance_judge,
             reflector = self.reflect_op.reflector
         )
+
+        self.auto_display = eval(self.config.args.display.method)(self.config.args.display, register_dict = {
+            'Memory Storage': self.storage
+        })
     
     def reset(self) -> None:
         self.__reset_objects__([self.storage, self.store_op, self.reflect_op, self.recall_op])
@@ -37,6 +42,9 @@ class GAMemory(ExplicitMemory):
     
     def recall(self, query) -> object:
         return self.recall_op(query)
+    
+    def display(self) -> None:
+        self.auto_display(self.storage.counter)
         
     def manage(self, operation, **kwargs) -> None:
         if operation == 'reflect':

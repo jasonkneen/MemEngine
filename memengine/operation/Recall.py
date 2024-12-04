@@ -305,14 +305,14 @@ Recursive Memory Summary:
 %s
 FIFO Memory:
 %s
-""" % (piece_num, piece_mode, self.config.truncation.number, working_memory, self.main_context['recursive_summary'], FIFO_memory)
+""" % (piece_num, piece_mode, self.config.truncation.number, working_memory, self.main_context['recursive_summary']['global'], FIFO_memory)
 
         return prompt
 
     def get_current_memory_context(self):
         memory_context = self.utilization({
             'Working Memory': [element['text'] for element in self.main_context['working_context'].get_all_memory_in_order()],
-            'Recursive Memory Summary': self.main_context['recursive_summary'],
+            'Recursive Memory Summary': self.main_context['recursive_summary']['global'],
             'FIFO Memory': [element['text'] for element in self.main_context['FIFO_queue'].get_all_memory_in_order()]
         })
         return memory_context
