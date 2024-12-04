@@ -1,0 +1,50 @@
+from memengine.memory.BaseMemory import ExplicitMemory
+from memengine.utils.Storage import LinearStorage
+from memengine.operation.Recall import GAMemoryRecall
+from memengine.operation.Store import GAMemoryStore
+from memengine.operation.Reflect import GAReflect
+
+class GAMemory(ExplicitMemory):
+    """
+    Memory mechanism of Generative Agents.
+    """
+    def __init__(self, config) -> None:
+        super().__init__(config)
+
+        self.storage = LinearStorage(self.config.args.storage)
+        self.recall_op = GAMemoryRecall(self.config.args.recall, storage = self.storage)
+        self.reflect_op = GAReflect(
+            self.config.args.reflect,
+            storage = self.storage,
+            text_retrieval = self.recall_op.text_retrieval,
+            time_retrieval = self.recall_op.time_retrieval
+        )
+        self.store_op = GAMemoryStore(
+            self.config.args.store,
+            storage = self.storage,
+            text_retrieval = self.recall_op.text_retrieval,
+            time_retrieval = self.recall_op.time_retrieval,
+            importance_retrieval = self.recall_op.importance_retrieval,
+            imporatance_judge = self.recall_op.imporatance_judge,
+            reflector = self.reflect_op.reflector
+        )
+    
+    def reset(self) -> None:
+        self.__reset_objects__([self.storage, self.store_op, self.reflect_op, self.recall_op])
+
+    def store(self, observation) -> None:
+        self.store_op(observation)
+    
+    def recall(self, query) -> object:
+        return self.recall_op(query)
+        
+    def manage(self, operation, **kwargs) -> None:
+        if operation == 'reflect':
+            insight_list = self.reflect_op(**kwargs)
+            for insight in insight_list:
+                self.store_op(insight)
+        else:
+            raise "Management error."
+    
+    def optimize(self, **kwargs) -> None:
+        pass
