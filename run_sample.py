@@ -114,12 +114,24 @@ Assistant: Try having a light snack like a banana or some yogurt about 30 minute
     memory.store('Bob is Alice\'s best friend, who is an excellent engineer.')
     print(memory.recall('What are Alice\'s hobbies in her spare time?'))
 
+def sample_MTMemory():
+    memory_config = MemoryConfig(DEFAULT_MTMEMORY)
+    memory = MTMemory(memory_config)
+    memory.store('Alice is 28 years old and works as a university lecturer.')
+    memory.store('Alice holds a master\'s degree in English Literature.')
+    memory.store('Alice loves reading and jogging.')
+    memory.store('Alice has a pet cat named Whiskers.')
+    memory.store('Last year, Alice traveled to New York to attend a literary conference.')
+    memory.store('Bob is Alice\'s best friend, who is an excellent engineer.')
+    print(memory.recall('What are Alice\'s hobbies in her spare time?'))
+
 if __name__ == '__main__':
     # sample_FUMemory()
     # sample_STMemory()
-    sample_LTMemory()
+    # sample_LTMemory()
     # sample_GAMemory()
     # sample_MBMemory()
     # sample_SCMemory()
     # sample_MGMemory()
     # sample_RFMemory()
+    sample_STMemory()
