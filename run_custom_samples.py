@@ -4,6 +4,7 @@ from memengine.function.Utilization import *
 from memengine.function.Retrieval import *
 from memengine.operation.Recall import BaseRecall, __convert_str_to_observation__
 from memengine.operation.Store import BaseStore
+from memengine.operation.Optimize import RFOptimize
 from memengine.memory.BaseMemory import ExplicitMemory
 from memengine.utils.Storage import LinearStorage
 from memengine.utils.Display import *
@@ -35,6 +36,7 @@ MyMemoryConfig = {
             'scale': 2.0
         }
     },
+    'optimize': DEFAULT_RFMEMORY_OPTIMIZE,
     'display': DEFAULT_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
@@ -55,6 +57,7 @@ class MyMemoryRecall(BaseRecall):
         super().__init__(config)
 
         self.storage = kwargs['storage']
+        self.insight = kwargs['insight']
         self.truncation = eval(self.config.truncation.method)(self.config.truncation)
         self.utilization = eval(self.config.utilization.method)(self.config.utilization)
         self.text_retrieval = eval(self.config.text_retrieval.method)(self.config.text_retrieval)
@@ -77,7 +80,11 @@ class MyMemoryRecall(BaseRecall):
         if hasattr(self.config, 'topk'):
             scores, ranking_ids = scores[:self.config.topk], ranking_ids[:self.config.topk]
 
-        memory_context = self.utilization([self.storage.get_memory_text_by_mid(mid) for mid in ranking_ids])
+        memory_context = self.utilization({
+                    'Insight': self.insight['global_insight'],
+                    'Memory': [self.storage.get_memory_text_by_mid(mid) for mid in ranking_ids]
+                })
+
         return self.truncation(memory_context)
 
 class MyMemoryStore(BaseStore):
@@ -110,20 +117,29 @@ class MyMemory(ExplicitMemory):
         super().__init__(config)
         
         self.storage = LinearStorage(self.config.args.storage)
-        self.recall_op = MyMemoryRecall(self.config.args.recall, storage = self.storage)
+        self.insight = {'global_insight': '[None]'}
+
+        self.recall_op = MyMemoryRecall(
+            self.config.args.recall,
+            storage = self.storage,
+            insight = self.insight
+        )
         self.store_op = MyMemoryStore(
             self.config.args.store,
             storage = self.storage,
             text_retrieval = self.recall_op.text_retrieval,
             bias_retrieval = self.recall_op.bias_retrieval
         )
+        self.optimize_op = RFOptimize(self.config.args.optimize, insight = self.insight)
 
         self.auto_display = eval(self.config.args.display.method)(self.config.args.display, register_dict = {
-            'Memory Storage': self.storage
+            'Memory Storage': self.storage,
+            'Insight': self.insight
         })
 
     def reset(self):
         self.__reset_objects__([self.storage, self.store_op, self.recall_op])
+        self.insight = {'global_insight': '[None]'}
 
     def store(self, observation) -> None:
         self.store_op(observation)
@@ -138,11 +154,17 @@ class MyMemory(ExplicitMemory):
         pass
     
     def optimize(self, **kwargs) -> None:
-        pass
+        self.optimize_op(**kwargs)
 
 def sample_MyMemory():
     memory_config = MemoryConfig(MyMemoryConfig)
     memory = MyMemory(memory_config)
+    trial1 = """Alice: I recently started a fascinating historical fiction book, and I can't put it down!
+Assistant: What historical period does it cover?
+Alice: It's set during the Renaissance, a time of incredible cultural and intellectual growth.
+Assistant: The Renaissance sounds like such a vibrant era! How does the author weave historical facts into the story?"""
+    memory.optimize(new_trial = trial1)
+
     memory.store('Alice is 28 years old and works as a university lecturer.')
     memory.store('Alice holds a master\'s degree in English Literature.')
     memory.display()
