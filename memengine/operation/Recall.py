@@ -1,13 +1,7 @@
 from abc import ABC, abstractmethod
-from memengine.function.Truncation import *
-from memengine.function.Retrieval import *
-from memengine.function.Judge import *
-from memengine.function.Forget import *
-from memengine.function.Summarizer import *
-from memengine.function.Trigger import *
-from memengine.function.Utilization import *
+from memengine.function import *
 
-def __convert_str_to_observation__(method):
+def __recall_convert_str_to_observation__(method):
     def wrapper(self, observation):
         if isinstance(observation, str):
             return method(self, {'text': observation})
@@ -42,7 +36,7 @@ class FUMemoryRecall(BaseRecall):
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization])
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -61,7 +55,7 @@ class STMemoryRecall(BaseRecall):
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization, self.time_retrieval])
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -83,7 +77,7 @@ class LTMemoryRecall(BaseRecall):
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization, self.text_retrieval])
     
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -113,7 +107,7 @@ class GAMemoryRecall(BaseRecall):
         for index in target_ids:
             self.time_retrieval.update(index, timestamp)
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -163,7 +157,7 @@ class MBMemoryRecall(BaseRecall):
         self.__reset_objects__([self.truncation, self.utilization, self.text_retrieval])
         self.summary = {'global': 'None'}
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -230,7 +224,7 @@ class SCMemoryRecall(BaseRecall):
         for index in target_ids:
             self.time_retrieval.update(index, timestamp)
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -385,7 +379,7 @@ FIFO Memory:
 
         self.main_context['working_context'].delete_by_mid_list(memory_list)
     
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         text = query['text']
 
@@ -404,7 +398,7 @@ class RFMemoryRecall(BaseRecall):
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization])
 
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             if self.insight['global_insight']:

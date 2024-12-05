@@ -1,13 +1,9 @@
-from memengine.function.Judge import BaseJudge
-from memengine.function.Truncation import LMTruncation
-from memengine.function.Utilization import ConcateUtilization
-from memengine.function.Retrieval import TextRetrieval, ValueRetrieval
-from memengine.operation.Recall import BaseRecall, __convert_str_to_observation__
-from memengine.operation.Store import BaseStore
-from memengine.operation.Optimize import RFOptimize
+from memengine.function import BaseJudge, LMTruncation, ConcateUtilization, TextRetrieval, ValueRetrieval
+from memengine.operation import BaseRecall, BaseStore, RFOptimize
+from memengine.operation.Recall import __recall_convert_str_to_observation__
+from memengine.operation.Store import __store_convert_str_to_observation__
 from memengine.memory.BaseMemory import ExplicitMemory
-from memengine.utils.Storage import LinearStorage
-from memengine.utils.Display import ScreenDisplay
+from memengine.utils import LinearStorage, ScreenDisplay
 from memengine.config.Config import MemoryConfig
 from default_config.DefaultGlobalConfig import DEFAULT_GLOBAL_CONFIG
 from default_config.DefaultUtilsConfig import DEFAULT_LINEAR_STORAGE, DEFAULT_SCREEN_DISPLAY
@@ -66,7 +62,7 @@ class MyMemoryRecall(BaseRecall):
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization, self.text_retrieval, self.bias_retrieval])
     
-    @__convert_str_to_observation__
+    @__recall_convert_str_to_observation__
     def __call__(self, query):
         if self.storage.is_empty():
             return self.config.empty_memory
@@ -100,7 +96,7 @@ class MyMemoryStore(BaseStore):
     def reset(self):
         pass
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         text = observation['text']
 

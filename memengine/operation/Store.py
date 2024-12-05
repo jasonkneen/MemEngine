@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
-from memengine.function.Summarizer import *
-from memengine.function.Truncation import *
+from memengine.function import *
 import torch
 import numpy as np
 
-def __convert_str_to_observation__(method):
+def __store_convert_str_to_observation__(method):
     def wrapper(self, observation):
         if isinstance(observation, str):
             return method(self, {'text': observation})
@@ -12,7 +11,7 @@ def __convert_str_to_observation__(method):
             return method(self, observation)
     return wrapper
 
-class BaseStore():
+class BaseStore(ABC):
     def __init__(self, config):
         self.config = config
 
@@ -37,7 +36,7 @@ class FUMemoryStore(BaseStore):
     def reset(self):
         pass
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         self.storage.add(observation)
 
@@ -51,7 +50,7 @@ class STMemoryStore(BaseStore):
     def reset(self):
         pass
     
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if 'time' not in observation:
             timestamp = self.storage.counter
@@ -70,7 +69,7 @@ class LTMemoryStore(BaseStore):
     def reset(self):
         pass
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         text = observation['text']
         self.storage.add(observation)
@@ -90,7 +89,7 @@ class GAMemoryStore(BaseStore):
     def reset(self):
         pass
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if 'time' not in observation:
             timestamp = self.storage.counter
@@ -140,7 +139,7 @@ class MBMemoryStore(BaseStore):
         summaries = [summary_text for summary_time, summary_text in self.summary.items() if summary_time != 'global']
         self.summary['global'] = self.summarizer({'content': summaries})
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if not self.storage.is_empty():
             last_timestamp = self.storage.get_memory_attribute_by_mid(-1, 'time')
@@ -180,7 +179,7 @@ class SCMemoryStore(BaseStore):
     def reset(self):
         pass
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if 'time' not in observation:
             timestamp = self.storage.counter
@@ -233,7 +232,7 @@ class MGMemoryStore(BaseStore):
 
         self.main_context['FIFO_queue'].clear_memory(start=0, end=mid+1)
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if 'time' not in observation:
             timestamp = self.main_context['FIFO_queue'].counter
@@ -296,7 +295,7 @@ class MTMemoryStore(BaseStore):
 
                 current_node_id = child[max_index]
 
-    @__convert_str_to_observation__
+    @__store_convert_str_to_observation__
     def __call__(self, observation):
         if self.storage.is_empty():
             self.storage.add_node({
