@@ -1,9 +1,11 @@
+from memengine.config.default_arg_config.DefaultGlobalConfig import *
+
 # ----- LLM -----
 DEFAULT_APILLM = {
     'method': 'APILLM',
     'name': 'gpt-4o-mini',
-    'api_key': 'sk-02otYN1Q5IcaC3kewSHonCROpAJCcdRSJ8u7mlvjLT6GY1Ut',
-    'base_url': 'https://api.chatanywhere.tech/v1',
+    'api_key': DEFAULT_OPENAI_APIKEY,
+    'base_url': DEFAULT_OPENAI_APIBASE,
     'temperature': 0.9
 }
 
@@ -17,7 +19,7 @@ DEFAULT_LMTRUNCATION = {
     'method': 'LMTruncation',
     'mode': 'word',
     'number': 1024,
-    'path': '/data/zhangzeyu/local_llms/Llama-3-8B-Instruct'
+    'path': DEFAULT_LLAMA3_8B_INSTRUCT_PATH
 }
 
 DEFAULT_TRUNCATION = DEFAULT_LMTRUNCATION
@@ -27,14 +29,14 @@ DEFAULT_LLAMA_ENCODER = {
     'method': 'LMEncoder',
     'name': 'Llama-3-8B-Instruct',
     'dimension': 4096,
-    'path': '/data/zhangzeyu/local_llms/Llama-3-8B-Instruct'
+    'path': DEFAULT_LLAMA3_8B_INSTRUCT_PATH
 }
 
 DEFAULT_E5_ENCODER = {
     'method': 'STEncoder',
     'name': 'e5-base-v2',
     'dimension': 768,
-    'path': '/data/zhangzeyu/local_llms/e5-base-v2'
+    'path': DEFAULT_E5_BASE_V2_PATH
 }
 
 # DEFAULT_ENCODER = DEFAULT_LLAMA_ENCODER
