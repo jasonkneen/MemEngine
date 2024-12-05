@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 from memengine.function.Encoder import *
-import faiss
 import numpy as np
 
 class BaseRetrieval(ABC):
@@ -156,40 +155,3 @@ class TimeRetrieval(ValueRetrieval):
             return scores, indices
         else:
             return indices
-
-class FaissRetrieval(BaseRetrieval):
-    def __init__(self, config):
-        super().__init__(config)
-
-        self.encoder = eval(self.config.encoder.method)(self.config.encoder)
-
-        if self.config.mode in ['cosine', 'dot']:
-            self.vectorstore = faiss.IndexFlatIP(self.config.encoder.dimension)
-        elif self.config.mode == 'L2':
-            self.vectorstore = faiss.IndexFlatL2(self.config.encoder.dimension)
-        else:
-            raise "Unrecgonized faiss mode %s." % self.config.mode
-
-    def __call__(self, query):
-        query_emb = self.encoder(query)
-        if self.config.mode == 'cosine':
-            norm = np.linalg.norm(query_emb, ord=2)
-            query_emb = query_emb/norm
-            
-        if hasattr(self.config, 'topk'):
-            dis, idx = self.vectorstore.search(query_emb,self.config.topk)
-        else:
-            dis, idx = self.vectorstore.search(query_emb,self.vectorstore.ntotal)
-        ranking_ids = idx[0]
-        return ranking_ids
-
-    def add(self, text):
-        mem_encode = self.encoder(text)
-        if self.config.mode == 'cosine':
-            norm = np.linalg.norm(mem_encode, ord=2)
-            mem_encode = mem_encode/norm
-
-        self.vectorstore.add(mem_encode)
-
-    def delete(self, index):
-        raise "FaissRetrieval does not support delete!"

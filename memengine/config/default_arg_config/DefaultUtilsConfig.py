@@ -20,7 +20,7 @@ DEFAULT_SCREEN_DISPLAY = {
 DEFAULT_FILE_DISPLAY = {
     'method': 'FileDisplay',
     'prefix': '----- Current Memory Start (%s) -----',
-    'suffix': '----- Current Memory End -----',
+    'suffix': '----- End -----',
     'key_format': '(%s)',
     'key_value_sep': '\n',
     'item_sep': '\n',
