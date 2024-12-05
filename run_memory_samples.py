@@ -1,17 +1,17 @@
 from memengine import MemoryConfig
 
 from memengine import FUMemory, STMemory, LTMemory, GAMemory
-from memengine.config.default_arg_config.DefaultMemoryConfig import DEFAULT_FUMEMORY, DEFAULT_LTMEMORY, DEFAULT_STMEMORY, DEFAULT_GAMEMORY
+from default_config.DefaultMemoryConfig import DEFAULT_FUMEMORY, DEFAULT_LTMEMORY, DEFAULT_STMEMORY, DEFAULT_GAMEMORY
 
 from memengine import MBMemory, SCMemory, MGMemory, RFMemory
-from memengine.config.default_arg_config.DefaultMemoryConfig import DEFAULT_MBMEMORY, DEFAULT_SCMEMORY, DEFAULT_MGMEMORY, DEFAULT_RFMEMORY
+from default_config.DefaultMemoryConfig import DEFAULT_MBMEMORY, DEFAULT_SCMEMORY, DEFAULT_MGMEMORY, DEFAULT_RFMEMORY
 
 from memengine import MTMemory
-from memengine.config.default_arg_config.DefaultMemoryConfig import DEFAULT_MTMEMORY
+from default_config.DefaultMemoryConfig import DEFAULT_MTMEMORY
 
 
 def sample_FUMemory():
-    memory_config = MemoryConfig()
+    memory_config = MemoryConfig(DEFAULT_FUMEMORY)
     memory = FUMemory(memory_config)
     memory.store('Alice is 28 years old and works as a university lecturer.')
     memory.store('Alice holds a master\'s degree in English Literature.')

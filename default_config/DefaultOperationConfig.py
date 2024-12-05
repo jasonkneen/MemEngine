@@ -1,4 +1,4 @@
-from memengine.config.default_arg_config.DefaultFunctionConfig import *
+from default_config.DefaultFunctionConfig import *
 
 # ----- Recall -----
 DEFAULT_FUMEMORY_RECALL = {

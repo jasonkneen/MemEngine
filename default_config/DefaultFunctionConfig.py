@@ -1,4 +1,4 @@
-from memengine.config.default_arg_config.DefaultGlobalConfig import *
+from default_config.DefaultGlobalConfig import *
 
 # ----- LLM -----
 DEFAULT_APILLM = {

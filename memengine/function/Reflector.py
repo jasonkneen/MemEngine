@@ -80,7 +80,6 @@ class TrialReflector(BaseReflector):
             template=self.config.prompt.template
         )
         prompt = prompt_template.format(**input_dict)
-        print(prompt)
         res = self.llm.fast_run(prompt)
-        print('output', res)
+
         return res

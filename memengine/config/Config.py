@@ -1,4 +1,3 @@
-from memengine.config.default_arg_config.DefaultMemoryConfig import DEFAULT_ALL_PARAM
 import yaml, logging, os
 
 class AttributeDict():
@@ -25,7 +24,7 @@ class ArgConfig():
     def __init__(self, obj=None):
         if obj is None:
             # If use default memory, 'FullMemory' will be loaded.
-            self.add_args(DEFAULT_ALL_PARAM)
+            raise "No parameter obj provided."
         elif isinstance(obj, dict):
             # Load from a dict.
             self.add_args(obj)

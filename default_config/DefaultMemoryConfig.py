@@ -1,6 +1,6 @@
-from memengine.config.default_arg_config.DefaultOperationConfig import *
-from memengine.config.default_arg_config.DefaultUtilsConfig import *
-from memengine.config.default_arg_config.DefaultGlobalConfig import *
+from default_config.DefaultOperationConfig import *
+from default_config.DefaultUtilsConfig import *
+from default_config.DefaultGlobalConfig import *
 
 DEFAULT_FUMEMORY = {
     'name': 'FUMemory',
