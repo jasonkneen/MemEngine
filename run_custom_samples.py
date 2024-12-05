@@ -1,18 +1,18 @@
 from memengine.function.Judge import BaseJudge
-from memengine.function.Truncation import *
-from memengine.function.Utilization import *
-from memengine.function.Retrieval import *
+from memengine.function.Truncation import LMTruncation
+from memengine.function.Utilization import ConcateUtilization
+from memengine.function.Retrieval import TextRetrieval, ValueRetrieval
 from memengine.operation.Recall import BaseRecall, __convert_str_to_observation__
 from memengine.operation.Store import BaseStore
 from memengine.operation.Optimize import RFOptimize
 from memengine.memory.BaseMemory import ExplicitMemory
 from memengine.utils.Storage import LinearStorage
-from memengine.utils.Display import *
+from memengine.utils.Display import ScreenDisplay
 from memengine.config.Config import MemoryConfig
 from default_config.DefaultGlobalConfig import DEFAULT_GLOBAL_CONFIG
-from default_config.DefaultUtilsConfig import DEFAULT_LINEAR_STORAGE, DEFAULT_DISPLAY
+from default_config.DefaultUtilsConfig import DEFAULT_LINEAR_STORAGE, DEFAULT_SCREEN_DISPLAY
 from default_config.DefaultOperationConfig import DEFAULT_RFMEMORY_OPTIMIZE
-from default_config.DefaultFunctionConfig import DEFAULT_TRUNCATION, DEFAULT_UTILIZATION, DEFAULT_TEXT_RETRIEVAL, DEFAULT_VALUE_RETRIEVAL
+from default_config.DefaultFunctionConfig import DEFAULT_LMTRUNCATION, DEFAULT_CONCATE_UTILIZATION, DEFAULT_TEXT_RETRIEVAL, DEFAULT_VALUE_RETRIEVAL
 import random, torch
 
 # ----- Configuration -----
@@ -22,8 +22,8 @@ MyMemoryConfig = {
     'storage': DEFAULT_LINEAR_STORAGE,
     'recall': {
         'method': 'MyMemoryRecall',
-        'truncation': DEFAULT_TRUNCATION,
-        'utilization': DEFAULT_UTILIZATION,
+        'truncation': DEFAULT_LMTRUNCATION,
+        'utilization': DEFAULT_CONCATE_UTILIZATION,
         'text_retrieval': DEFAULT_TEXT_RETRIEVAL,
         'bias_retrieval': DEFAULT_VALUE_RETRIEVAL,
         'topk': 3,
@@ -37,7 +37,7 @@ MyMemoryConfig = {
         }
     },
     'optimize': DEFAULT_RFMEMORY_OPTIMIZE,
-    'display': DEFAULT_DISPLAY,
+    'display': DEFAULT_SCREEN_DISPLAY,
     'global_config': DEFAULT_GLOBAL_CONFIG
 }
 
@@ -58,10 +58,10 @@ class MyMemoryRecall(BaseRecall):
 
         self.storage = kwargs['storage']
         self.insight = kwargs['insight']
-        self.truncation = eval(self.config.truncation.method)(self.config.truncation)
-        self.utilization = eval(self.config.utilization.method)(self.config.utilization)
-        self.text_retrieval = eval(self.config.text_retrieval.method)(self.config.text_retrieval)
-        self.bias_retrieval = eval(self.config.bias_retrieval.method)(self.config.bias_retrieval)
+        self.truncation = LMTruncation(self.config.truncation)
+        self.utilization = ConcateUtilization(self.config.utilization)
+        self.text_retrieval = TextRetrieval(self.config.text_retrieval)
+        self.bias_retrieval = ValueRetrieval(self.config.bias_retrieval)
     
     def reset(self):
         self.__reset_objects__([self.truncation, self.utilization, self.text_retrieval, self.bias_retrieval])
@@ -95,7 +95,7 @@ class MyMemoryStore(BaseStore):
         self.text_retrieval = kwargs['text_retrieval']
         self.bias_retrieval = kwargs['bias_retrieval']
 
-        self.bias_judge = eval(self.config.bias_judge.method)(self.config.bias_judge)
+        self.bias_judge = MyBiasJudge(self.config.bias_judge)
     
     def reset(self):
         pass
@@ -132,7 +132,7 @@ class MyMemory(ExplicitMemory):
         )
         self.optimize_op = RFOptimize(self.config.args.optimize, insight = self.insight)
 
-        self.auto_display = eval(self.config.args.display.method)(self.config.args.display, register_dict = {
+        self.auto_display = ScreenDisplay(self.config.args.display, register_dict = {
             'Memory Storage': self.storage,
             'Insight': self.insight
         })
