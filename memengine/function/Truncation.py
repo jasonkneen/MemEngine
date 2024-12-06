@@ -5,7 +5,7 @@ class BaseTruncation(ABC):
     def __init__(self, config) -> None:
         self.config = config
     
-    def reset():
+    def reset(self):
         pass
 
     @abstractmethod

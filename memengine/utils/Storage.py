@@ -25,7 +25,7 @@ class LinearStorage(BaseStorage):
         self.counter = 0
 
     def reset(self):
-        self.clear_all_memory()
+        self.clear_memory()
         self.counter = 0
 
     def display(self):
