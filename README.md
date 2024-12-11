@@ -16,6 +16,8 @@ Many research methods have been proposed to improve the memory capability of LLM
 
 - **Convenient and Extensible Memory Development.** Based on our modularized memory operations and memory functions, researchers can conveniently develop their own advanced memory models. They can also extend existing operations and functions to develop their own modules. For better support researchers' development, we provide detailed instructions and examples in our document to guide the customization.
 
+- **User-friendly and Pluggable Memory Usage.** We provide several deployment manners for our library to empower agents powerful memory capabilities. We also provide various modes for memory usage, including default, configurable, and automatic modes, in order to make it more user-friendly. Moreover, our memory modules are pluggable and can be utilized across different agent frameworks.
+
 ## Installation
 
 There are several ways to install MemEngine.
