@@ -4,6 +4,9 @@ from transformers import AutoModel, AutoTokenizer
 from sentence_transformers import SentenceTransformer
 
 class BaseEncoder(ABC):
+    """
+    Transfer textual messages into embeddings to represent in latent space by pre-trained models.
+    """
     def __init__(self, config) -> None:
         self.config = config
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -16,6 +19,9 @@ class BaseEncoder(ABC):
         pass
 
 class LMEncoder(BaseEncoder):
+    """
+    Embedding vias LM transformers.
+    """
     def __init__(self, config):
         super().__init__(config)
 
@@ -34,6 +40,9 @@ class LMEncoder(BaseEncoder):
             return 'Unrecognized Return Type.'
 
 class STEncoder(BaseEncoder):
+    """
+    Embedding vias Sentence Transformer.
+    """
     def __init__(self, config):
         super().__init__(config)
 

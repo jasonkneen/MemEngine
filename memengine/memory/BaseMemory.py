@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 class BaseMemory(ABC):
+    """
+    Basic class for memory methods.
+    """
     def __init__(self, config) -> None:
         self.config = config
 
@@ -29,6 +32,9 @@ class BaseMemory(ABC):
         pass
 
 class ExplicitMemory(BaseMemory):
+    """
+    Explicit memory indicates the methods that represent memory contents with texts.
+    """
     def __init__(self, config) -> None:
         super().__init__(config)
     
@@ -57,6 +63,9 @@ class ExplicitMemory(BaseMemory):
         pass
 
 class ImplicitMemory(BaseMemory):
+    """
+    Implicit memory indicates the methods that represent memory contents with parameters.
+    """
     def __init__(self, config):
         super().__init__(config)
 

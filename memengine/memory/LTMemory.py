@@ -6,7 +6,7 @@ from memengine.utils.Display import *
 
 class LTMemory(ExplicitMemory):
     """
-    Memory mechanism with vanilla retrieval mechanism (vanilla RAG), a.k.a, long-term memory.
+    LTMemory (Long-term Memory): Calculate semantic similarities with text embeddings to retrieval most relevant information.
     """
     def __init__(self, config) -> None:
         super().__init__(config)

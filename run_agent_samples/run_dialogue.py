@@ -42,6 +42,8 @@ class LLM():
         response = self.run([{"role": "user", "content": query}])
         return response['result']
 
+# ----- Dialogue Agent -----
+
 class DialogueAgent():
     def __init__(self, role):
         self.llm = LLM()

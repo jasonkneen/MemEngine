@@ -6,8 +6,10 @@ from memengine.utils.Display import *
 
 class MBMemory(ExplicitMemory):
     """
-    Memory mechanism of MemoryBank.
+    MBMemory (MemoryBank [1]): A multi-layered memory model with dynamic summarization and forgetting mechanism.
     We consider one step as one day in the original implementation.
+
+    [1] Zhong, Wanjun, et al. "Memorybank: Enhancing large language models with long-term memory." Proceedings of the AAAI Conference on Artificial Intelligence. Vol. 38. No. 17. 2024.
     """
     def __init__(self, config) -> None:
         super().__init__(config)

@@ -6,7 +6,9 @@ from memengine.utils.Display import *
 
 class MGMemory(ExplicitMemory):
     """
-    Memory mechanism of MemGPT.
+    MGMemory (MemGPT [1]): A hierarchical memory model that treat the memory system as an operation system.
+
+    [1] Packer, Charles, et al. "Memgpt: Towards llms as operating systems." arXiv preprint arXiv:2310.08560 (2023).
     """
     def __init__(self, config):
         super().__init__(config)

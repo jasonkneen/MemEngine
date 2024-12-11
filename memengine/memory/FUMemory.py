@@ -6,7 +6,7 @@ from memengine.utils.Display import *
 
 class FUMemory(ExplicitMemory):
     """
-    Memory mechanism with full storage and recalling.
+    FUMemory (Full Memory): Naively concatenate all the information into one string, also known as long-context memory.
     """
     def __init__(self, config) -> None:
         super().__init__(config)

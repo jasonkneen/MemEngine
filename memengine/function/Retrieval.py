@@ -4,6 +4,10 @@ from memengine.function.Encoder import *
 import numpy as np
 
 class BaseRetrieval(ABC):
+    """
+    Utilized to find most useful information for the current query or observation.
+    Commonly by different aspects like semantic relevance, importance, recency and so on.
+    """
     def __init__(self, config):
         self.config = config
 
@@ -31,6 +35,9 @@ class BaseRetrieval(ABC):
         pass
 
 class LinearRetrieval(BaseRetrieval):
+    """
+    Retrieval in linear indexes.
+    """
     def __init__(self, config):
         super().__init__(config)
 
@@ -68,6 +75,9 @@ class LinearRetrieval(BaseRetrieval):
         pass
 
 class TextRetrieval(LinearRetrieval):
+    """
+    Retrieval most relevant texts accoring to the query.
+    """
     def __init__(self, config):
         super().__init__(config)
 
@@ -107,6 +117,9 @@ class TextRetrieval(LinearRetrieval):
         self.tensorstore = torch.cat((self.tensorstore[:index], text_embedding, self.tensorstore[index+1:]))
 
 class ValueRetrieval(LinearRetrieval):
+    """
+    Retrieval certain values with several algorithms.
+    """
     def __init__(self, config):
         super().__init__(config)
     
@@ -130,6 +143,9 @@ class ValueRetrieval(LinearRetrieval):
         self.tensorstore = torch.cat((self.tensorstore[:index], torch.tensor([value]).to(self.device), self.tensorstore[index+1:]))
 
 class TimeRetrieval(ValueRetrieval):
+    """
+    Retrieval according to timestamps with several algorithms.
+    """
     def __init__(self, config):
         super().__init__(config)
 

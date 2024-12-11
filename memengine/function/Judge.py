@@ -3,6 +3,9 @@ from memengine.function.LLM import *
 from langchain.prompts import PromptTemplate
 
 class BaseJudge(ABC):
+    """
+    Assess given observations or intermediate messages on certain aspects.
+    """
     def __init__(self, config):
         self.config = config
     
@@ -14,6 +17,9 @@ class BaseJudge(ABC):
         pass
 
 class LLMJudge(BaseJudge):
+    """
+    Judge vias large language models.
+    """
     def __init__(self, config):
         super().__init__(config)
 

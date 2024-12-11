@@ -16,6 +16,9 @@ class BaseDisplay(ABC):
         pass
 
 class TextDisplay(BaseDisplay):
+    """
+    Display memory contents in text forms.
+    """
     def __init__(self, config, register_dict) -> None:
         super().__init__(config, register_dict)
     
@@ -30,6 +33,9 @@ class TextDisplay(BaseDisplay):
         return '\n'.join([self.config.prefix % str(tag), current_memory, self.config.suffix])
 
 class ScreenDisplay(TextDisplay):
+    """
+    Display memory contents in the console.
+    """
     def __init__(self, config, register_dict):
         super().__init__(config, register_dict)
 
@@ -37,6 +43,9 @@ class ScreenDisplay(TextDisplay):
         print(self.__get_display_memory__(tag))
 
 class FileDisplay(TextDisplay):
+    """
+    Display memory contents in the file.
+    """
     def __init__(self, config, register_dict) -> None:
         super().__init__(config, register_dict)
 

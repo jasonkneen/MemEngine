@@ -4,6 +4,9 @@ from langchain.prompts import PromptTemplate
 import re
 
 class BaseTrigger(ABC):
+    """
+    Designed to call functions or tools in extensible manners.
+    """
     def __init__(self, config):
         self.config = config
     
@@ -15,6 +18,9 @@ class BaseTrigger(ABC):
         pass
 
 class LLMTrigger(BaseTrigger):
+    """
+    Utilizing LLMs to determine which function should be called with specific arguments. 
+    """
     def __init__(self, config):
         super().__init__(config)
 

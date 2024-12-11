@@ -6,7 +6,9 @@ from memengine.utils.Display import *
 
 class MTMemory(ExplicitMemory):
     """
-    The implement of MemTree.
+    MTMemory (MemTree [1]): A dynamic memory model with a tree-structured semantic representation to organize information.
+    
+    [1] Rezazadeh, Alireza, et al. "From Isolated Conversations to Hierarchical Schemas: Dynamic Tree Memory Representation for LLMs." arXiv preprint arXiv:2410.14052 (2024).
     """
     def __init__(self, config):
         super().__init__(config)

@@ -3,6 +3,9 @@ from memengine.function.LLM import *
 from langchain.prompts import PromptTemplate
 
 class BaseSummarizer(ABC):
+    """
+    Summarize texts into a brief summary, which can decrease the lengths of texts and emphasize critical points.
+    """
     def __init__(self, config):
         self.config = config
     
@@ -14,6 +17,9 @@ class BaseSummarizer(ABC):
         pass
 
 class LLMSummarizer(BaseSummarizer):
+    """
+    Summarize vias large language models.
+    """
     def __init__(self, config):
         super().__init__(config)
 

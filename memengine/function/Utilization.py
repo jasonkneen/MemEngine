@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 class BaseUtilization(ABC):
+    """
+    Deal with several different parts of memory contents, formulating these information into a unified output.
+    """
     def __init__(self, config):
         super().__init__()
 

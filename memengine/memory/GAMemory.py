@@ -7,7 +7,9 @@ from memengine.utils.Display import *
 
 class GAMemory(ExplicitMemory):
     """
-    Memory mechanism of Generative Agents.
+    GAMemory (Generative Agents [1]): A pioneer memory model with weighted retrieval combination and self-reflection mechanism.
+    
+    [1] Park, Joon Sung, et al. "Generative agents: Interactive simulacra of human behavior." Proceedings of the 36th annual acm symposium on user interface software and technology. 2023.
     """
     def __init__(self, config) -> None:
         super().__init__(config)

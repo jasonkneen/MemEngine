@@ -7,7 +7,9 @@ from memengine.utils.Display import *
 
 class RFMemory(ExplicitMemory):
     """
-    Memory mechanism of Reflexion.
+    RFMemory (Reflexion [1]): A famous memory method that can learn to memorize from previous trajectories by optimization.
+
+    [1] Shinn, Noah, et al. "Reflexion: Language agents with verbal reinforcement learning." Advances in Neural Information Processing Systems 36 (2024).
     """
     def __init__(self, config):
         super().__init__(config)

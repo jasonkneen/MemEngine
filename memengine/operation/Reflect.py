@@ -39,6 +39,7 @@ class GAReflect(BaseReflect):
 
     def __call__(self):
         if self.reflector.get_current_accmulated_importance() >= self.reflector.get_reflection_threshold():
+            # Retrieve most recent information for reflection.
             ref_ids = self.time_retrieval(self.storage.counter, topk = self.config.reflector.reflection_topk)
 
             ref_context = '\n'.join([self.storage.get_memory_text_by_mid(mid) for mid in ref_ids])
@@ -46,6 +47,7 @@ class GAReflect(BaseReflect):
 
             self.accmulated_importance = 0
 
+            # Generate several questions with self-asking.
             question_list = self.reflector.self_ask({
                 'information': ref_context,
                 'question_number': self.config.reflector.question_number
@@ -54,12 +56,14 @@ class GAReflect(BaseReflect):
             ret_context = ''
             ret_evidence_list = []
             
+            # Generate several insights for each question.
             for question in question_list:
                 ret_ids = self.text_retrieval(question, topk = self.config.reflector.reflection_topk, sort = True)
                 ret_evidence_list += ret_ids.cpu().numpy().tolist()
 
             ret_context = '\n'.join([self.__get_recursion_context__(mid) for mid in ret_evidence_list])
             
+            # Generate several insights for each question.
             insight_list = self.reflector.generate_insight({
                 'statements': ret_context,
                 'insight_number': self.config.reflector.insight_number

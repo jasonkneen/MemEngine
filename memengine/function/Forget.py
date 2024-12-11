@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 import math, random
 
 class BaseForget(ABC):
+    """
+    Typically applied in simulation-oriented agents, such role-playing and social simulations.
+    It empowers agents with features of human cognitive psychology, aligning with human roles.
+    """
     def __init__(self, config):
         self.config = config
 
@@ -14,6 +18,9 @@ class BaseForget(ABC):
         pass
 
 class MBForget(BaseForget):
+    """
+    Forgetting according to an exponential curve.
+    """
     def __init__(self, config):
         super().__init__(config)
 

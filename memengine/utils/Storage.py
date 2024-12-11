@@ -18,6 +18,9 @@ class BaseStorage(ABC):
         pass
 
 class LinearStorage(BaseStorage):
+    """
+    Memory storage in linear structure.
+    """
     def __init__(self, config):
         super().__init__(config)
 
@@ -97,6 +100,9 @@ class LinearStorage(BaseStorage):
         return self.memory_list
     
 class GraphStorage(BaseStorage):
+    """
+    Memory storage in graph structure.
+    """
     def __init__(self, config):
         super().__init__(config)
 

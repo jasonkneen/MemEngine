@@ -3,6 +3,9 @@ from abc import ABC, abstractmethod
 from openai import OpenAI
 
 class BaseLLM(ABC):
+    """
+    Provides a convenient interface to utilize the powerful capability of different large language models.
+    """
     def __init__(self, config):
         self.config = config
     
@@ -14,6 +17,9 @@ class BaseLLM(ABC):
         pass
 
 class APILLM(BaseLLM):
+    """
+    Utilize LLM from APIs.
+    """
     def __init__(self, config):
         super().__init__(config)
 

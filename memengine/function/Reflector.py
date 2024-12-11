@@ -3,6 +3,9 @@ from memengine.function.LLM import *
 from langchain.prompts import PromptTemplate
 
 class BaseReflector(ABC):
+    """
+    Draw new insights in higher level from existing information, commonly for reflection and optimization operations.
+    """
     def __init__(self, config):
         self.config = config
 

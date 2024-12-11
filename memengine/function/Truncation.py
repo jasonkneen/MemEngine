@@ -2,6 +2,9 @@ from abc import ABC, abstractmethod
 from transformers import AutoTokenizer
 
 class BaseTruncation(ABC):
+    """
+    Helps to formulate memory contexts under the limitations of token number by certain LLMs.
+    """
     def __init__(self, config) -> None:
         self.config = config
     

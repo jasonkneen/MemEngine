@@ -6,7 +6,9 @@ from memengine.utils.Display import *
 
 class SCMemory(ExplicitMemory):
     """
-    Memory mechanism of SCM.
+    SCMemory (SCM [1]): A self-controlled memory model that can recall minimum but necessary information for inference.
+    
+    [1] Wang, Bing, et al. "Enhancing large language model with self-controlled memory framework." arXiv preprint arXiv:2304.13343 (2023).
     """
     def __init__(self, config):
         super().__init__(config)

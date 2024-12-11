@@ -6,7 +6,7 @@ from memengine.utils.Display import *
 
 class STMemory(ExplicitMemory):
     """
-    Memory mechanism with the latest observations.
+    STMemory (Short-term Memory): Maintain the most recent information and concatenate them into one string as the context.
     """
     def __init__(self, config) -> None:
         super().__init__(config)

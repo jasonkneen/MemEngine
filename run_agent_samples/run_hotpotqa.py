@@ -38,6 +38,8 @@ class LLM():
         response = self.run([{"role": "user", "content": query}])
         return response['result']
 
+# ----- HotpotQA Environment -----
+
 class WikiSearcher():
     def __init__(self):
         self.zim = Archive(WIKIPATH)
@@ -168,6 +170,8 @@ def parse_action(string):
         }
     else:
         return None
+
+# ----- HotpotQA Agent -----
 
 class HotPotQAAgent():
     def __init__(self):
