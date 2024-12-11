@@ -6,7 +6,7 @@ MemEngine is a unified and modularied library for developing advanced memory of 
 
 Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines without a unified framework. It is difficult for developers to try different methods for experiments due to their inconsistencies. Moreover, many basic functions in different methods (such as retrieval) are duplicated. Researchers often need to repeatedly implement them when developing advanced methods, which reduces their research efficiency. Besides, many academic methods are tightly coupled within agents that are non-pluggable, making them difficult to apply across different agents. Therefore, we develop the MemEngine to solve the above problems.
 
-![framework](assets\framework.png)
+<img src="asset/framework.png">
 
 ## Features
 
