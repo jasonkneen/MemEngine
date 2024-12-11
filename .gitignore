@@ -4,6 +4,6 @@
 *.DS_Store
 
 logs/
-doc/
+doc/build/
 
 run_agent_samples/data_hotpotqa/
