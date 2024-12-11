@@ -1,4 +1,4 @@
-import logging,json, random, string, re, sys
+import logging, json, random, string, re, sys
 from openai import OpenAI
 from libzim.reader import Archive
 from libzim.search import Query, Searcher
