@@ -49,3 +49,19 @@ class APILLM(BaseLLM):
     def fast_run(self, query):
         response = self.run([{"role": "user", "content": query}])
         return response['result']
+
+class LocalVLLM(BaseLLM):
+    def __init__(self, config):
+        super().__init__(config)
+
+        from vllm import LLM, SamplingParams
+        self.model = LLM(config.name)
+
+        self.sampling_params = SamplingParams(temperature=config.temperature)
+    
+    def run(self, message_list):
+        return self.model.chat(message_list,self.sampling_params)[0]
+    
+    def fast_run(self, query):
+        response = self.run([{"role": "user", "content": query}])
+        return response.outputs[0].text
