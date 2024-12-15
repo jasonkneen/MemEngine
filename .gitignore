@@ -2,6 +2,7 @@
 *.log
 *.pickle
 *.DS_Store
+*.cache/
 
 logs/
 doc/build/
