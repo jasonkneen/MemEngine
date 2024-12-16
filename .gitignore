@@ -6,5 +6,9 @@
 
 logs/
 doc/build/
+dist/
+memengine.egg-info
+build/
+conda_recipe/
 
 run_agent_samples/data_hotpotqa/
