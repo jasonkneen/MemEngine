@@ -5,7 +5,7 @@ with open("requirements.txt",encoding='utf-8') as f:
 
 setup(
     name='memengine',
-    version='0.1.0',
+    version='1.0.0',
     author='Zeyu Zhang',
     author_email='zeyuzhang@ruc.edu.cn',
     description='A Comprehensive Library for Memory of LLM-based Agents.',
