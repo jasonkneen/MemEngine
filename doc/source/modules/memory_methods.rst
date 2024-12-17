@@ -1,19 +1,19 @@
-Memory Methods
+Memory Models
 ===============
 
-We implement abundant memory models from recent research works under a unified protocol, where all of them can be easily switched to others. Specifically, we implement these models with the methods including reset, store, recall, manage, and optimize.
+We implement a variety of memory models from recent research works under a general structure, allowing seamless switching among them. Specifically, these models are implemented with the interfaces including reset, store, recall, manage, and optimize.
 
 Our implemented memory models are shown as follows:
 
-- FUMemory (Full Memory): Naively concatenate all the information into one string, also known as long-context memory.
-- LTMemory (Long-term Memory): Calculate semantic similarities with text embeddings to retrieval most relevant information.
-- STMemory (Short-term Memory): Maintain the most recent information and concatenate them into one string as the context.
-- GAMemory (Generative Agents [1]): A pioneer memory model with weighted retrieval combination and self-reflection mechanism.
-- MBMemory (MemoryBank [2]): A multi-layered memory model with dynamic summarization and forgetting mechanism.
-- SCMemory (SCM [3]): A self-controlled memory model that can recall minimum but necessary information for inference.
-- MGMemory (MemGPT [4]): A hierarchical memory model that treat the memory system as an operation system.
-- RFMemory (Reflexion [5]): A famous memory method that can learn to memorize from previous trajectories by optimization.
-- MTMemory (MemTree [6]): A dynamic memory model with a tree-structured semantic representation to organize information.
+- **FUMemory** (Full Memory): Naively concatenate all the information into one string, also known as long-context memory.
+- **LTMemory** (Long-term Memory): Calculate semantic similarities with text embeddings to retrieval most relevant information.
+- **STMemory** (Short-term Memory): Maintain the most recent information and concatenate them into one string as the context.
+- **GAMemory** (Generative Agents [1]): A pioneer memory model with weighted retrieval combination and self-reflection mechanism.
+- **MBMemory** (MemoryBank [2]): A multi-layered memory model with dynamic summarization and forgetting mechanism.
+- **SCMemory** (SCM [3]): A self-controlled memory model that can recall minimum but necessary information for inference.
+- **MGMemory** (MemGPT [4]): A hierarchical memory model that treat the memory system as an operation system.
+- **RFMemory** (Reflexion [5]): A famous memory method that can learn to memorize from previous trajectories by optimization.
+- **MTMemory** (MemTree [6]): A dynamic memory model with a tree-structured semantic representation to organize information.
 
 
 All of these memory models are implemented with the combination among various memory operations, and we make some reasonable adaptations in their implementations.

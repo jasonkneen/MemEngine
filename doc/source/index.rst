@@ -1,17 +1,13 @@
-.. title:: MemEngine v0.1.0
+.. title:: MemEngine v1.0.2
 
 MemEngine
 ===========
 Introduction
 ------------
 
-MemEngine is a unified and modularied library for developing advanced memory of LLM-based agents.
-Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines without a unified framework.
-
-It is difficult for developers to try different methods for experiments due to their inconsistencies.
-Moreover, many basic functions in different methods (such as retrieval) are duplicated. Researchers often need to repeatedly implement them when developing advanced methods, which reduces their research efficiency.
-Besides, many academic methods are tightly coupled within agents that are non-pluggable, making them difficult to apply across different agents.
-Therefore, we develop the MemEngine to solve the above problems.
+Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines and lack a unified framework.
+This inconsistency presents challenges for developers to attempt different models in their experiments.Moreover, many basic functions (such as retrieval) are duplicated across different models, and researchers often need to implement them repeatedly when developing new models, leading to wasted time.
+Besides, many academic models are tightly integrated with agents in a non-pluggable manner, making them difficult to apply across different agents.
 
 .. image:: asset/framework.png
 
@@ -19,18 +15,13 @@ Therefore, we develop the MemEngine to solve the above problems.
 Features
 ---------
 
-**Unified and Modularized Memory Framework.**
-We propose a unified memory framework with three hierarchical levels, in order to implement and organize existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module to easily modify hyper-parameters and prompts in different levels, and implement a utility module to better save and demonstrate memory contents.
+**Unified and Modular Memory Framework.** We propose a unified memory framework composed of three hierarchical levels to organize and implement existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module for easy modification of hyper-parameters and prompts at different levels, and implement a utility module to better save and demonstrate memory contents.
 
-**Abundant Research Memory Implement.**
-Based on our unified and modularized memory framework, we implement abundant memory models in recent research papers, most of which are widely applied in various applications.
-All of these models can be easily switched and tried under our framework, with different configurations and hyper-parameters that can be adjusted for better application across different agents.
-**Convenient and Extensible Memory Development.**
-Based on our modularized memory operations and memory functions, researchers can conveniently develop their own advanced memory models. They can also extend existing operations and functions to develop their own modules. For better support researchers' development, we provide detailed instructions and examples in our document to guide the customization.	
+**Abundant Memory Implementation.** Based on our unified and modular framework, we implement a wide range of memory models from recent research works, many of which are widely applied in diverse applications. All of these models can be easily switched and tested under our framework, with different configurations of hyper-parameters and prompts that can be adjusted for better application across various agents and tasks.
 
-**User-friendly and Pluggable Memory Usage.**
-We provide several deployment manners for our library to empower agents powerful memory capabilities. We also provide various modes for memory usage, including default, configurable, and automatic modes, in order to make it more user-friendly.
-Moreover, our memory modules are pluggable and can be utilized across different agent frameworks.
+**Convenient and Extensible Memory Development.** Based on our modular memory operations and memory functions, researchers can conveniently develop their own advanced memory models. They can also extend existing operations and functions to develop their own modules. To better support researchers' development, we provide detailed instructions and examples in our document to guide the customization.
+
+**User-friendly and Pluggable Memory Usage.** Our library offers multiple deployment options, and provides various memory usage modes, including default, configurable, and automatic modes. Moreover, our memory modules are pluggable and can be easily utilized across different agent framework, which is also compatible with some prominent frameworks.
 
 Contents
 --------
