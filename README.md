@@ -1,29 +1,36 @@
 # MemEngine
 
-MemEngine is a unified and modularied library for developing advanced memory of LLM-based agents.
+MemEngine is a unified and modular library for developing advanced memory of LLM-based agents.
 
 ## Introduction
 
-Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines without a unified framework. It is difficult for developers to try different methods for experiments due to their inconsistencies. Moreover, many basic functions in different methods (such as retrieval) are duplicated. Researchers often need to repeatedly implement them when developing advanced methods, which reduces their research efficiency. Besides, many academic methods are tightly coupled within agents that are non-pluggable, making them difficult to apply across different agents. Therefore, we develop the MemEngine to solve the above problems.
+Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines and lack a unified framework.
+This inconsistency presents challenges for developers to attempt different models in their experiments.Moreover, many basic functions (such as retrieval) are duplicated across different models, and researchers often need to implement them repeatedly when developing new models, leading to wasted time.
+Besides, many academic models are tightly integrated with agents in a non-pluggable manner, making them difficult to apply across different agents.
 
 <img src="assets/framework.png">
 
 ## Features
 
-- **Unified and Modularized Memory Framework.** We propose a unified memory framework with three hierarchical levels, in order to implement and organize existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module to easily modify hyper-parameters and prompts in different levels, and implement a utility module to better save and demonstrate memory contents.
-- **Abundant Research Memory Implement.** Based on our unified and modularized memory framework, we implement abundant memory models in recent research papers, most of which are widely applied in various applications.
-  All of these models can be easily switched and tried under our framework, with different configurations and hyper-parameters that can be adjusted for better application across different agents.
+- **Unified and Modular Memory Framework.** We propose a unified memory framework composed of three hierarchical levels to organize and implement existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module for easy modification of hyper-parameters and prompts at different levels, and implement a utility module to better save and demonstrate memory contents.
 
-- **Convenient and Extensible Memory Development.** Based on our modularized memory operations and memory functions, researchers can conveniently develop their own advanced memory models. They can also extend existing operations and functions to develop their own modules. For better support researchers' development, we provide detailed instructions and examples in our document to guide the customization.
+- **Abundant Memory Implementation.** Based on our unified and modular framework, we implement a wide range of memory models from recent research works, many of which are widely applied in diverse applications.
+All of these models can be easily switched and tested under our framework, with different configurations of hyper-parameters and prompts that can be adjusted for better application across various agents and tasks.
 
-- **User-friendly and Pluggable Memory Usage.** We provide several deployment manners for our library to empower agents powerful memory capabilities. We also provide various modes for memory usage, including default, configurable, and automatic modes, in order to make it more user-friendly. Moreover, our memory modules are pluggable and can be utilized across different agent frameworks.
+- **Convenient and Extensible Memory Development.** Based on our modular memory operations and memory functions, researchers can conveniently develop their own advanced memory models.
+They can also extend existing operations and functions to develop their own modules.
+To better support researchers' development, we provide detailed instructions and examples in our document to guide the customization.
+
+- **User-friendly and Pluggable Memory Usage.** Our library offers multiple deployment options, and provides various memory usage modes, including default, configurable, and automatic modes.
+Moreover, our memory modules are pluggable and can be easily utilized across different agent framework, which is also compatible with some prominent frameworks.
 
 ## Installation
 
-There are several ways to install MemEngine.
+There are several ways to install MemEngine. We recommend the environment version with `python>=3.9`.
 
 
-### I. Install from source
+### I. Install from source code (Recommended)
+We highly recommend installing MemEngine from source code.
 
 ```shell
 conda create -n memengine_env python=3.9
@@ -33,6 +40,7 @@ pip install -e .
 ```
 
 ### II. Install from pip
+You may also install MemEngine with `pip`, but it might not be the latest version.
 
 ```
 conda create -n memengine_env python=3.9
@@ -40,6 +48,8 @@ pip install memengine
 ```
 
 ### III. Install from conda
+When installing MemEngine from conda, please add `conda-forge` into your channel to ensure langchain can be installed properly.
+
 
 ```
 conda create -n memengine_env python=3.9
@@ -52,7 +62,7 @@ There are two primary ways to use our library.
 
 ### I. Local Deployment
 
-One can install our library conveniently in their python environment. Then, they can create a memory module for their agents, and using unified interfaces to execute memory operations inside programs. An example is shown as follows:
+Developers can easily install our library in their Python environment via pip, conda, or from source code. Then, they can create memory modules for their agents, and utilize unified interfaces to perform memory operations within programs. An example is shown as follows:
 
 ```python
 from langchain.prompts import PromptTemplate
@@ -82,7 +92,8 @@ More details can be found in [Quick Start](#Quick Start).
 
 ### II. Remote Deployment
 
-One can also install our library on computer servers, and install `uvicorn` and `fastapi` as follows:
+Alternatively, developers can install our library on computing servers and launch the service through a port.
+First of all, you need to install `uvicorn` and `fastapi` as follows:
 
 ```
 pip install uvicorn fastapi
@@ -94,9 +105,9 @@ Then, lunch the service through a port with the following command:
 uvicorn server_start:memengine_server --reload --port [YOUR PORT]
 ```
 
-Here, `[YOUR PORT]` is the port you provided, such as `8426`.
+Here, `[YOUR PORT]` is the port you provided such as `8426`, and `YOUR ADDRESS` is the host address of the computing server.
 
-Then, they can start a client to conduct memory operations by invoking requests of HTTP protocol remotely, on lightweight devices. An example is shown as follows:
+Then, you can initiate a client to perform memory operations by sending HTTP requests remotely from their lightweight devices. An example is shown as follows:
 
 ```python
 from memengine.utils.Client import Client
@@ -104,7 +115,7 @@ from langchain.prompts import PromptTemplate
 from memengine.config.Config import MemoryConfig
 from memengine.memory.FUMemory import FUMemory
 ......
-ServerAddress = 'http://127.0.0.1:[YOUR PORT]'
+ServerAddress = 'http://[YOUR ADDRESS]:[YOUR PORT]'
 
 class DialogueAgent():
     def __init__(self, role, another_role):
@@ -160,6 +171,78 @@ cd run_agent_samples
 python run_hotpotqa.py
 ```
 
+### Using memory with automatic selection
+
+Developers can select the appropriate memory models, hyper-parameters, and prompts from the provided ranges, based on a specific task's criteria.
+
+First of all, define a reward function as the ceriteria, whose input is a memory object and output is a float. An example of the dialogue task is shown as follows:
+
+```python
+
+def sample_reward_func(memory):
+    """Given a memory, utilize it and obtain a reward score to reflect how good it is.
+
+    Args:
+        memory (BaseMemory): the memory in MemEngine.
+
+    Returns:
+        float: the reward score to reflect how good the memory is.
+
+    """
+    dialogue_record = []
+
+    user = DialogueAgent('User', 'Assistant', FUMemory(MemoryConfig(DEFAULT_FUMEMORY)))
+    assistant = DialogueAgent('Assistant', 'User', memory)
+    assistant_response = assistant.response('Please start the dialogue between User and Assistant.')
+
+    for current_step in range(MAX_STEP):
+        user_response = user.response(assistant_response)
+        assistant_response = assistant.response(user_response)
+        dialogue_record.append('User: %s' % user_response)
+        dialogue_record.append('Assistant: %s' % assistant_response)
+
+    score = eval_assistant(dialogue_record)
+    return score
+
+```
+Then, prepare the range of model or config selection. An example is shown as follows:
+
+```python
+# Option 1: Direct Assign
+ModelCandidate = [{
+    'model': 'FUMemory',
+    'config': DEFAULT_FUMEMORY
+},  {
+    'model': 'LTMemory',
+    'config': DEFAULT_LTMEMORY
+},  {
+    'model': 'STMemory',
+    'config': DEFAULT_STMEMORY
+}]
+
+# Option 2: Generate with Combination (Recommended for Hyper-parameter Tuning)
+ModelCandidate += generate_candidate({
+    'model': 'LTMemory',
+    'base_config': DEFAULT_LTMEMORY,
+    'adjust_name': 'recall.text_retrieval.topk',
+    'adjust_range': [1, 3, 5, 10]
+})
+```
+
+Finally, start automatic selection and get the result.
+
+```python
+def sample_automode():
+    selection_result = automatic_select(sample_reward_func, ModelCandidate)
+    print('The full ranking of candidate is shown as follows:')
+    print(selection_result)
+
+    print('The best model/config is shown as follows:')
+    print(selection_result[0])
+```
+
+The full example can be found in `run_automode_sample.py`.
+
 #### II. LLM-based Agents for Dialogue
 
 You need to change the API keys in `cd run_agent_samples/run_dialogue.py`. And you can run the program with the command:
@@ -171,11 +254,11 @@ python run_dialogue.py
 
 ## Customize New Memory
 
-Our library provides a great support to customize advanced memory models for developers. There are major three aspects to customize new methods.
+Our library provides support for developers to customize advanced memory models. There are major three aspects to customize new models.
 
 ### I. Customize Memory Functions
 
-Researchers may need to implement new functions in their method. For example, they may extend *LLMJudge* to design a *BiasJudge* for poisoning detection. Here, we provide an example of *RandomJudge*:
+Researchers may need to implement new functions in their models to extend existing ones for additional features. For example, they may extend *LLMJudge* to design a *BiasJudge* for poisoning detection. Here, we provide an example of *RandomJudge*:
 
 ```python
 from memengine.function import BaseJudge
@@ -190,7 +273,7 @@ class MyBiasJudge(BaseJudge):
 
 ### II. Customize Memory Operations
 
-To implement a new method, the memory operation is most significant part to customize, containing major pipelines of the detailed process. Here is an example:
+In developing a new model, customizing memory operations is crucial as they constitute the major pipelines of the detailed processes. For instance, a new memory recall operation can be implemented with a series of memory functions with advanced design and combination. Here is an example:
 
 ```python
 ......
@@ -231,9 +314,9 @@ class MyMemoryRecall(BaseRecall):
         return self.truncation(memory_context)
 ```
 
-### III. Customize Memory Methods
+### III. Customize Memory Models
 
-By utilizing the newly customized memory operations and the existing ones, research can formulate their methods with various combinations in final. Here is an example:
+By integrating newly customized memory operations with existing ones, researchers can design their models with various combinations to best suit their applications. Here is an example:
 
 ```python
 ......
@@ -280,3 +363,4 @@ The full example can be found in `run_custom_samples.py`.
 
 ## Acknowledgement
 
+Our paper will be released soon.
