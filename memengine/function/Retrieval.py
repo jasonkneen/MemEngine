@@ -126,8 +126,10 @@ class ValueRetrieval(LinearRetrieval):
     def __calculate_scores__(self, query):
         if self.config.mode == 'identical':
             scores = self.tensorstore
+        elif self.config.mode == 'delta':
+            scores = torch.tensor(query).to(self.device) - self.tensorstore
         elif self.config.mode == 'exp':
-            delta = torch.tensor(query) - self.tensorstore
+            delta = torch.tensor(query).to(self.device) - self.tensorstore
             scores = torch.pow(self.config.coef.decay, delta)
         else:
             raise "Value Retrieval mode error."

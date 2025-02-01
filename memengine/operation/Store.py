@@ -235,7 +235,7 @@ class MGMemoryStore(BaseStore):
         flush_context = ''
         for mid, element in enumerate(FIFO_queue):
             flush_context += '\n%s' % element['text']
-            self.recall_storage.add(element['text'])
+            self.recall_storage.add(element)
             self.recall_retrieval.add(element['text'])
             if self.flush_checker.check_truncation_needed(flush_context):
                 break

@@ -26,6 +26,12 @@ class LLMJudge(BaseJudge):
         self.llm = eval(config.LLM_config.method)(config.LLM_config)
 
     def __post_scale__(self, res):
+        # [TODO] Add an exception catch.
+        # For example:
+        # try:
+        #     score = float(eval(res))
+        # except Exception as e:
+        #     score = 5.0
         score = float(eval(res))
         if hasattr(self.config, 'post_scale'):
             return score/self.config.post_scale

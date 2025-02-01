@@ -184,11 +184,11 @@ DEFAULT_MGMEMORY_LLMTRIGGER = {
 {memory_prompt}
 {function_prompt}
 Please choose some of the following functions to execute, and you should output each executed function in a single line.
-{warning_content}{no_execuate_prompt}Your output should follow the following format in the examples, and do not output other messages.
+{warning_content}{no_execute_prompt}Your output should follow the following format in the examples, and do not output other messages.
 {few_shot}""",
-        'input_variables': ['text', 'memory_prompt', 'function_prompt', 'warning_content', 'no_execuate_prompt', 'few_shot']
+        'input_variables': ['text', 'memory_prompt', 'function_prompt', 'warning_content', 'no_execute_prompt', 'few_shot']
     },
-    'no_execuate': 'If you do not execute any functions, just output [No Excuate].',
+    'no_execute': 'If you do not execute any functions, just output [No Excuate].',
     'few_shot': """EXAMPLE 1:
 memory_retrieval('Alice's name')
 memory_save([0, 1])

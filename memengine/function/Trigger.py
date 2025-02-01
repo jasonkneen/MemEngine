@@ -61,7 +61,7 @@ class LLMTrigger(BaseTrigger):
             if match:
                 func_name, func_args = match.group(1), match.group(2)
                 parsed_args = []
-                func_arg_list = func_args.split(',')
+                func_arg_list = ['%s' % item for item in eval('[%s]' % func_args)]
                 if func_name in self.func_dict:
                     assert len(func_arg_list) == len(self.func_dict[func_name]['args'])
                     for ind, tp in enumerate(self.func_dict[func_name]['args_type']):
