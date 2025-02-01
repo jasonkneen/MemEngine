@@ -6,7 +6,7 @@ There are two primary ways to use our library.
 I. Local Deployment
 -------------------
 
-One can install our library conveniently in their python environment. Then, they can create a memory module for their agents, and using unified interfaces to execute memory operations inside programs. An example is shown as follows:
+Developers can easily install our library in their Python environment via pip, conda, or from source code. Then, they can create memory modules for their agents, and utilize unified interfaces to perform memory operations within programs. An example is shown as follows:
 
 .. code-block:: python
 
@@ -38,7 +38,8 @@ More details can be found in :ref:`quick_start`.
 II. Remote Deployment
 ---------------------
 
-One can also install our library on computer servers, and install `uvicorn` and `fastapi` as follows:
+Alternatively, developers can install our library on computing servers and launch the service through a port.
+First of all, you need to install ``uvicorn`` and ``fastapi`` as follows:
 
 .. code-block:: bash
 
@@ -52,9 +53,9 @@ Then, lunch the service through a port with the following command:
     uvicorn server_start:memengine_server --reload --port [YOUR PORT]
 
 
-Here, `[YOUR PORT]` is the port you provided, such as `8426`.
+Here, ``[YOUR PORT]`` is the port you provided such as ``8426``, and ``YOUR ADDRESS`` is the host address of the computing server.
 
-Then, they can start a client to conduct memory operations by invoking requests of HTTP protocol remotely, on lightweight devices. An example is shown as follows:
+Then, you can initiate a client to perform memory operations by sending HTTP requests remotely from their lightweight devices. An example is shown as follows:
 
 .. code-block:: python
     
@@ -84,4 +85,4 @@ Then, they can start a client to conduct memory operations by invoking requests 
             return res
 
 
-You can also refer a complete example in `run_client_sample.py`.
+You can also refer a complete example in ``run_client_sample.py``.
