@@ -1,5 +1,5 @@
-Memory Functions
-================
+📐 Memory Functions
+====================
 
 We implement various types of memory functions to support the construction of memory operations, which are listed as follows.
 
@@ -19,8 +19,8 @@ We implement various types of memory functions to support the construction of me
 
 **Truncation** helps to formulate memory contexts under the limitations of token number by certain LLMs.
 
-**Judge** intends to assess given observations or intermediate messages on certain aspects. For example, *GAMemory* judges the importance score of each observation when storing into memory, as an auxiliary criteria for the retrieval process.
+**Judge** intends to assess given observations or intermediate messages on certain aspects. For example, ``GAMemory`` judges the importance score of each observation when storing into memory, as an auxiliary criteria for the retrieval process.
 
 **LLM** provides a convenient interface to utilize the powerful capability of different large language models.
 
-All these memory functions are designed to conveniently construct different memory operations for various methods. For example, *GAMemoryStore* utilizes *LLMJudge* to provide the importance score on each observation.
+All these memory functions are designed to conveniently construct different memory operations for various methods. For example, ``GAMemoryStore`` utilizes ``LLMJudge`` to provide the importance score on each observation.

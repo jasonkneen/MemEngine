@@ -6,6 +6,7 @@
 
 logs/
 doc/build/
+doc/api_ref_gen/
 dist/
 memengine.egg-info
 build/

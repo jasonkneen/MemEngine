@@ -1,7 +1,7 @@
-Customize Memory Functions
-==============================
+📗 Customize Memory Functions
+===============================
 
-Researchers may need to implement new functions in their method. For example, they may extend *LLMJudge* to design a *BiasJudge* for poisoning detection. Here, we provide an example of *RandomJudge*:
+Researchers may need to implement new functions in their method. For example, they may extend ``LLMJudge`` to design a ``BiasJudge`` for poisoning detection. Here, we provide an example of ``RandomJudge``:
 
 .. code-block:: python
 

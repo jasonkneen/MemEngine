@@ -1,4 +1,4 @@
-Customize Memory Methods
+📙 Customize Memory Methods
 ==============================
 
 By utilizing the newly customized memory operations and the existing ones, research can formulate their methods with various combinations in final. Here is an example:
@@ -45,4 +45,4 @@ By utilizing the newly customized memory operations and the existing ones, resea
         ......
 
 
-The full example can be found in `run_custom_samples.py`.
+The full example can be found in ``run_custom_samples.py``.

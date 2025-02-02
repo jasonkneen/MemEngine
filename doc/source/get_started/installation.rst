@@ -1,5 +1,5 @@
-Installation
-===============
+📝 Installation
+================
 There are several ways to install MemEngine. We recommend the environment version with ``python>=3.9``.
 
 I. Install from source code (Recommended)
@@ -28,7 +28,7 @@ Developers may also install MemEngine with ``pip``, but it might not be the late
 III. Install from conda
 -----------------------
 
-Developers can install MemEngine from conda. When installing MemEngine from conda, please add `conda-forge` into your channel to ensure langchain can be installed properly.
+Developers can install MemEngine from conda. When installing MemEngine from conda, please add ``conda-forge``` into your channel to ensure langchain can be installed properly.
 
 .. code-block:: bash
     

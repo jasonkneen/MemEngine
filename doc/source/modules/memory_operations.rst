@@ -1,5 +1,5 @@
-Memory Operations
-=================
+✒️ Memory Operations
+======================
 
 We implement various types of memory operations for constructing memory models, including store, recall, manage, and optimize.
 
@@ -24,4 +24,4 @@ Memory Optimize Operation
 Intends to optimize the memory capability of LLM-based agents by using extra trials and trajectories. It enables agents to extract meta-insight from historical experiences, which can be considered as a learn-to-memorize procedure.
 
 
-Different memory models may share common memory operations or implement their unique operations according to their requirements. For example, *MTMemory* and *LTMemory* share the common memory recall operation *LTMemoryRecall*, while MTMemory has its own memory store operation *MTMemoryStore* to implement the tree-structured information update.
+Different memory models may share common memory operations or implement their unique operations according to their requirements. For example, ``MTMemory`` and ``LTMemory`` share the common memory recall operation ``LTMemoryRecall``, while MTMemory has its own memory store operation ``MTMemoryStore`` to implement the tree-structured information update.

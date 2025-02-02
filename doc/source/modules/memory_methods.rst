@@ -1,5 +1,5 @@
-Memory Models
-===============
+🗃 Memory Models
+==================
 
 We implement a variety of memory models from recent research works under a general structure, allowing seamless switching among them. Specifically, these models are implemented with the interfaces including reset, store, recall, manage, and optimize.
 

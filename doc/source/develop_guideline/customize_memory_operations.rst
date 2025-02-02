@@ -1,4 +1,4 @@
-Customize Memory Operations
+📘 Customize Memory Operations
 ==============================
 To implement a new method, the memory operation is most significant part to customize, containing major pipelines of the detailed process. Here is an example:
 

@@ -1,19 +1,19 @@
-.. title:: MemEngine v1.0.2
+.. title:: MemEngine v1.1.0
 
-MemEngine
-===========
-Introduction
-------------
-
-Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines and lack a unified framework.
-This inconsistency presents challenges for developers to attempt different models in their experiments.Moreover, many basic functions (such as retrieval) are duplicated across different models, and researchers often need to implement them repeatedly when developing new models, leading to wasted time.
-Besides, many academic models are tightly integrated with agents in a non-pluggable manner, making them difficult to apply across different agents.
+MemEngine: A Unified and Modular Library for Developing Advanced Memory of LLM-based Agents
+=============================================================================================
 
 .. image:: asset/framework.png
 
+📝 Introduction
+----------------
 
-Features
----------
+Recently, large language model based (LLM-based) agents have been widely applied across various fields. As a critical part, their memory capabilities have captured significant interest from both industrial and academic communities. Despite the proposal of many advanced memory models in recent research, however, there remains a lack of unified implementations under a general framework. To address this issue, we develop a unified and modular library for developing advanced memory models of LLM-based agents, called MemEngine. Based on our framework, we implement abundant memory models from recent research works.
+Additionally, our library facilitates convenient and extensible memory development, and offers user-friendly and pluggable memory usage.
+
+
+📌 Features
+------------
 
 **Unified and Modular Memory Framework.** We propose a unified memory framework composed of three hierarchical levels to organize and implement existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module for easy modification of hyper-parameters and prompts at different levels, and implement a utility module to better save and demonstrate memory contents.
 
@@ -23,8 +23,8 @@ Features
 
 **User-friendly and Pluggable Memory Usage.** Our library offers multiple deployment options, and provides various memory usage modes, including default, configurable, and automatic modes. Moreover, our memory modules are pluggable and can be easily utilized across different agent framework, which is also compatible with some prominent frameworks.
 
-Contents
---------
+📋 Contents
+------------
 
 .. toctree::
    :maxdepth: 1
@@ -37,7 +37,7 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Modules
+   :caption: Core Modules
 
    modules/overview
    modules/memory_methods
@@ -48,7 +48,7 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Develop Guideline
+   :caption: Development Guideline
 
    develop_guideline/customize_memory_methods
    develop_guideline/customize_memory_operations
@@ -58,7 +58,8 @@ Contents
    :maxdepth: 1
    :caption: API Reference
 
-   api_references/TBD.rst
+   api_reference/api_reference.rst
 
-Acknowledge
------------
+📧 Contact
+------------
+If you have any questions, please feel free to contact us via `zeyuzhang@ruc.edu.cn`.
