@@ -1,16 +1,38 @@
-# MemEngine
+# <div><img src="assets/edit.png" alt="Icon" width="24" height="24"> MemEngine: A Unified and Modular Library for Developing Advanced Memory of LLM-based Agents<div>
+<div align=center>
+<img src="https://img.shields.io/badge/Version-1.1.0-green" />
+<a href="https://arxiv.org/">
+<img src="https://img.shields.io/badge/ArXiv-Come.Soon-b31b1b.svg" /> </a>
+<a href="https://memengine.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Document-MemEngine-blue"></a>
+<a href="https://pypi.org/project/memengine/"><img src="https://img.shields.io/badge/Pypi-MemEngine-green"></a>
+<img src="https://img.shields.io/badge/License-MIT-yellow" /> <a></a> </div>   
+<p align=center>
+<a href="#📝-introduction">Introduction</a> |
+<a href="#📌-features">Features</a> |
+<a href="#💻-installation">Installation</a> |
+<a href="#📲-deployment">Deployment</a> |
+<a href="#🚀-quick-start">Quick Start</a> |
+<a href="#🧰-customize-new-memory">Customization</a> |
+<a href="#🔗-cite">Cite</a> |
+<a href="#📧-contact">Contact</a>
+</p>
 
 MemEngine is a unified and modular library for developing advanced memory of LLM-based agents.
 
-## Introduction
-
-Many research methods have been proposed to improve the memory capability of LLM-based agents, however, they are implemented under different pipelines and lack a unified framework.
-This inconsistency presents challenges for developers to attempt different models in their experiments.Moreover, many basic functions (such as retrieval) are duplicated across different models, and researchers often need to implement them repeatedly when developing new models, leading to wasted time.
-Besides, many academic models are tightly integrated with agents in a non-pluggable manner, making them difficult to apply across different agents.
-
 <img src="assets/framework.png">
 
-## Features
+## 💡 News
+
+**[01/21/2025]** MemEngine has been accepted by TheWebConf'25 (Resource Track).
+
+**[12/16/2024]** We release MemEngine v1.0.2.
+
+## 📝 Introduction
+
+Recently, large language model based (LLM-based) agents have been widely applied across various fields. As a critical part, their memory capabilities have captured significant interest from both industrial and academic communities. Despite the proposal of many advanced memory models in recent research, however, there remains a lack of unified implementations under a general framework. To address this issue, we develop a unified and modular library for developing advanced memory models of LLM-based agents, called MemEngine. Based on our framework, we implement abundant memory models from recent research works.
+Additionally, our library facilitates convenient and extensible memory development, and offers user-friendly and pluggable memory usage.
+
+## 📌 Features
 
 - **Unified and Modular Memory Framework.** We propose a unified memory framework composed of three hierarchical levels to organize and implement existing research models under a general structure. All these three levels are modularized inside our framework, where higher-level modules can reuse lower-level modules, thereby improving implementation efficiency and consistency. Besides, we provide a configuration module for easy modification of hyper-parameters and prompts at different levels, and implement a utility module to better save and demonstrate memory contents.
 
@@ -24,7 +46,7 @@ To better support researchers' development, we provide detailed instructions and
 - **User-friendly and Pluggable Memory Usage.** Our library offers multiple deployment options, and provides various memory usage modes, including default, configurable, and automatic modes.
 Moreover, our memory modules are pluggable and can be easily utilized across different agent framework, which is also compatible with some prominent frameworks.
 
-## Installation
+## 💻 Installation
 
 There are several ways to install MemEngine. We recommend the environment version with `python>=3.9`.
 
@@ -56,7 +78,7 @@ conda create -n memengine_env python=3.9
 conda install memengine
 ```
 
-## Deployment
+## 📲 Deployment
 
 There are two primary ways to use our library.
 
@@ -139,7 +161,7 @@ class DialogueAgent():
 You can also refer a complete example in `run_client_sample.py`.
 
 
-## Quick Start
+## 🚀 Quick Start
 
 We provide several manners to use MemEngine. We take local deployment as examples.
 
@@ -252,7 +274,7 @@ cd run_agent_samples
 python run_dialogue.py
 ```
 
-## Customize New Memory
+## 🧰 Customize New Memory
 
 Our library provides support for developers to customize advanced memory models. There are major three aspects to customize new models.
 
@@ -361,6 +383,10 @@ class MyMemory(ExplicitMemory):
 
 The full example can be found in `run_custom_samples.py`.
 
-## Acknowledgement
+## 🔗 Cite
 
 Our paper will be released soon.
+
+## 📧 Contact
+
+If you have any questions, please feel free to contact us via `zeyuzhang@ruc.edu.cn`.
