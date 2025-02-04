@@ -32,7 +32,10 @@ MemEngine is a unified and modular library for developing advanced memory of LLM
 Recently, large language model based (LLM-based) agents have been widely applied across various fields. As a critical part, their memory capabilities have captured significant interest from both industrial and academic communities. Despite the proposal of many advanced memory models in recent research, however, there remains a lack of unified implementations under a general framework. To address this issue, we develop a unified and modular library for developing advanced memory models of LLM-based agents, called MemEngine. Based on our framework, we implement abundant memory models from recent research works.
 Additionally, our library facilitates convenient and extensible memory development, and offers user-friendly and pluggable memory usage.
 
-[![MemEngine Promotional Video](assets/video-cover.png)](assets/MemEngine-Video1.0.mp4)
+<video controls poster="assets/video-cover.png">
+  <source src="assets/MemEngine-Video1.0.mp4" type="video/mp4">
+  Video Error
+</video>
 
 ## 📌 Features
 
