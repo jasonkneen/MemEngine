@@ -1,8 +1,8 @@
 # <div><img src="assets/edit.png" alt="Icon" width="24" height="24"> MemEngine: A Unified and Modular Library for Developing Advanced Memory of LLM-based Agents<div>
 <div align=center>
 <img src="https://img.shields.io/badge/Version-1.1.0-green" />
-<a href="https://arxiv.org/">
-<img src="https://img.shields.io/badge/ArXiv-Come.Soon-b31b1b.svg" /> </a>
+<a href="https://github.com/nuster1128/MemEngine/blob/master/assets/memengine-paper.pdf">
+<img src="https://img.shields.io/badge/Paper-Preprint-b31b1b.svg" /> </a>
 <a href="https://memengine.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Document-MemEngine-blue"></a>
 <a href="https://pypi.org/project/memengine/"><img src="https://img.shields.io/badge/Pypi-MemEngine-green"></a>
 <img src="https://img.shields.io/badge/License-MIT-yellow" /> <a></a> </div>   
@@ -391,7 +391,16 @@ The full example can be found in `run_custom_samples.py`.
 
 ## 🔗 Cite
 
-Our paper will be released soon.
+```
+@article{zhang2025memengine,
+  title={MemEngine: A Unified and Modular Library for Developing Advanced Memory of LLM-based Agents},
+  author={Zeyu Zhang, Quanyu Dai, Xu Chen, Rui Li, Zhongyang Li and Zhenhua Dong},
+  url={https://github.com/nuster1128/MemEngine/blob/master/assets/memengine-paper.pdf},
+  year={2025}
+}
+```
+
+
 
 ## 📧 Contact
 
