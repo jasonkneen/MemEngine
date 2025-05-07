@@ -22,7 +22,7 @@ MemEngine is a unified and modular library for developing advanced memory of LLM
 <img src="assets/framework.png">
 
 ## 💡 News
-**[05/04/2025]** Our appeal to Arxiv has been accepted. The ArXiv version is now available at [paper ArXiv](https://www.arxiv.org/abs/2505.02099).
+**[05/04/2025]** Our appeal to ArXiv has been accepted. The ArXiv version is now available at [paper ArXiv](https://www.arxiv.org/abs/2505.02099).
 
 **[04/01/2025]** MemEngine has been selected for an oral presentation at TheWebConf'25.
 
