@@ -399,11 +399,13 @@ The full example can be found in `run_custom_samples.py`.
 ```
 @article{zhang2025memengine,
   title={MemEngine: A Unified and Modular Library for Developing Advanced Memory of LLM-based Agents},
-  author={Zeyu Zhang, Quanyu Dai, Xu Chen, Rui Li, Zhongyang Li and Zhenhua Dong},
-  url={https://github.com/nuster1128/MemEngine/blob/master/assets/memengine-paper.pdf},
+  author={Zhang, Zeyu and Dai, Quanyu and Chen, Xu and Li, Rui and Li, Zhongyang and Dong, Zhenhua},
+  journal={arXiv preprint arXiv:2505.02099},
   year={2025}
 }
 ```
+
+
 
 
 
